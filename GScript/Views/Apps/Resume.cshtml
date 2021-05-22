@@ -1,0 +1,114 @@
+﻿@{
+    ViewData["Title"] = " - Resumen Apps";
+}
+@model List<App>
+
+<main class="container px-2 py-3 mb-4">
+
+    <div class="card ">
+        <div class="card-body ">
+            <h1 class="display-4 lead text-center">
+                Resumen Apps
+            </h1>
+
+            @if (Model != null)
+            {
+                <a asp-controller="Apps" asp-action="DeleteIdApps" class="btn btn-outline-dark">
+                    Eliminar Apps
+                </a>
+
+                <table class="table table-hover text-center mb-3">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Imagen</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+
+                    <tbody class="text-center">
+                        @foreach (App app in Model)
+                        {
+                            <tr>
+                                <td class="text-break">
+                                    @app.Name
+                                </td>
+                                <td class="text-break">
+                                    <img src="~/images/apps/@app.Icon" alt="" class="size-icon" />
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+                <div class="card shadow p-3 bg-white rounded mx-auto">
+                    <div class="card-body">
+                        <form method="post" asp-controller="Apps" asp-action="Result">
+                            <label class="mb-1">
+                                ¿Quieres que la consola permanezca abierta y en un directorio específico?
+                            </label>
+
+                            <div class="row py-2 px-3 border-2 border-dark rounded">
+                                <div class="form-check col-6">
+                                    <input class="form-check-input" type="radio" name="useConsole" id="true" value="true">
+                                    <label class="form-check-label" for="true">
+                                        Utilizar consola
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-3 col-6">
+                                    <input class="form-check-input" checked type="radio" name="useConsole" id="false" value="false">
+                                    <label class="form-check-label" for="false">
+                                        Cerrar consola
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="form-group d-none" id="dir-box">
+                                <label>Directorio a usar en la consola</label>
+                                <input type="text" name="dir" class="form-control" />
+                                <p class="text-danger">
+                                    Sustituir el nombre de usuario por %username%.
+                                </p>
+                            </div>
+                            
+
+                            <button type="submit" class="btn btn-secondary">Generar script</button>
+                        </form>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <p class="lead text-center">
+                    No has seleccionado ninguna aplicación.<br />
+                    <a asp-controller="Apps" asp-action="Index">
+                        Ver Apps
+                    </a>
+                </p>
+            }
+
+        </div>
+    </div>
+</main>
+
+@section scripts {
+    <script type="text/javascript">
+        $(document).ready(() => {
+            $("#true").change(() => {
+                if ($("#true").is(':checked')){
+                    console.log("marcado");
+                    $("#dir-box").attr("class", "form-group d-block");
+                }
+            });
+
+            $("#false").change(() => {
+                if ($("#false").is(':checked')) {
+                    console.log("marcado");
+                    $("#dir-box").attr("class", "form-group d-none");
+                }
+            });
+            
+        });
+    </script>
+}

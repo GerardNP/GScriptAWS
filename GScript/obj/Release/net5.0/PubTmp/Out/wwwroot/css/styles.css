@@ -1,0 +1,49 @@
+﻿.header-center {
+    display: flex !important;
+    justify-content: space-between !important;
+}
+
+.btn-aux-center {
+    display: none;
+}
+
+.fit-img {
+    object-fit: cover;
+}
+
+.profile-img {
+    max-height: 80px !important;
+    width: auto;
+    object-fit: cover;
+}
+
+.size-icon {
+    max-height: 50px;
+    max-width: 50px;
+}
+
+@media (min-width: 992px) {
+    .header-center a {
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+
+    .btn-aux-center {
+        display: block;
+        visibility: hidden;
+    }
+}
+
+footer {
+    bottom: 0;
+    width: 100%;
+}
+
+.decoration-underline::after {
+    content: "";
+    height: 2px;
+    width: 25%;
+    background: #706966;
+    display: block;
+    margin: 5px auto 15px;
+}

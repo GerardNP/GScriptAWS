@@ -1,0 +1,102 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- CSS AND ICONS-->
+    <link href="~/css/styles.css" rel="stylesheet"/>
+    <link rel="shortcut icon" href="~/images/content/gs-icon.png" type="image/x-icon">
+
+    <title>GScript @ViewData["Title"]</title>
+</head>
+<body class="bg-light">
+    <header class="navbar navbar-dark bg-dark navbar-expand-lg ">
+        <div class="container-fluid header-center">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <button class="btn-aux-center">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <a class="navbar-brand fs-1 d-flex align-items-center" asp-controller="Home" asp-action="Index">
+                <img src="~/images/content/gs-icon.png" alt="" class="bg-white rounded-circle" style="max-height: 50px;">
+                GScript
+            </a>
+
+            @await Component.InvokeAsync("InfoUser")
+        </div>
+    </header>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-white p-0">
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0 justify-content-center">
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Home" asp-action="Index">Inicio</a>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Scripts
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li>
+                                <a class="dropdown-item" asp-controller="Apps" asp-action="Index">
+                                    Apps
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" asp-controller="Shut" asp-action="Index">
+                                    Apagado
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Apps" asp-action="Resume">Tu actividad</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    @RenderBody()
+
+    <footer class="bg-dark text-white py-4 footer">
+        <p class="container text-center mb-0">
+            GScript - &copy;2021
+        </p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="~/js/jquery-3.6.0.min.js"></script>
+    <script src="~/js/bootstrap.bundle.min.js"></script>
+    <script src="https://kit.fontawesome.com/0dafa75f42.js" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        $(document).ready(() => {
+            $(document).ready(() => footer());
+            $(window).resize(() => footer());
+        });
+
+        const footer = function () {
+            let altoNav = $(window).height(); // +peque
+            let altoDoc = $(document).height();
+
+            if (altoDoc > altoNav) {
+                $("footer").css({ "position": "initial" })
+            }
+            else {
+                $("footer").css({ "position": "fixed" })
+            }
+        }
+    </script>
+    @RenderSection("scripts", false)
+</body>
+</html>

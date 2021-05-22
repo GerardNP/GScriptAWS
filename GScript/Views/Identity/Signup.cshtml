@@ -1,0 +1,46 @@
+﻿@{
+    ViewData["Title"] = "Sign Up";
+}
+
+<main class="container text-center px-2 py-3 mb-4">
+    <div class="card">
+        <div class="card-body row mx-0  shadow rounded">
+            <div class="col-md-6 p-3">
+                <h1 class="display-4 text-center mb-5">
+                    Sign Up
+                </h1>
+                <p class="text-muted p-2 text-center">
+                    Regístrate y guarda el contenido de tus ejecutables.<br />
+                    Accede a ellos en cualquier momento y desde cualquier lugar.<br />
+                    Elimínalos, Edítalos, Renombralos, Descargalos, Haz lo que necesites.
+                </p>
+            </div>
+
+            <div class="col-md-6 p-3">
+                <form method="post">
+                    <div class="form-group mb-2">
+                        <label class="s-2">Usuario</label>
+                        <input type="text" name="name" class="form-control rounded-pill" required />
+                    </div>
+
+                    <div class="form-group mb-2">
+                        <label class="ps-2">Correo</label>
+                        <input type="email" name="email" class="form-control rounded-pill" required />
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label class="ps-2">Contraseña</label>
+                        <input type="password" name="password" class="form-control rounded-pill" required />
+                    </div>
+
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-secondary py-2">
+                            Registrarse
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+

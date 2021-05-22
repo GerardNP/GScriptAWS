@@ -1,0 +1,36 @@
+﻿<main class="container text-center px-2 py-3 mb-4">
+    <div class="d-flex flex-column align-items-center justify-content-center">
+
+        @if (@ViewData["mensaje"] != null)
+        {
+            <div class="alert alert-danger text-center" alert-dismissible fade show" role="alert">
+                @ViewData["mensaje"]
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        }
+
+        <div class="card shadow p-3 bg-white rounded" style="width: 18rem;">
+            <div class="card-body">
+                <h2 class="display-4 text-center mb-5">
+                    Log In
+                </h2>
+
+                <form method="post">
+                    <div class="form-group mb-2">
+                        <input type="email" name="email" class="form-control rounded-pill"
+                               placeholder="Correo" required autofocus />
+                    </div>
+
+                    <div class="form-group  mb-3">
+                        <input type="password" name="password" class="form-control rounded-pill"
+                               placeholder="Contraseña" required />
+                    </div>
+
+                    <button type="submit" class="btn btn-secondary btn-block rounded-pill">
+                        Iniciar sesión
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>

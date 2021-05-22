@@ -1,0 +1,61 @@
+﻿@{
+    ViewData["Title"] = "Selección Apps";
+}
+
+@model List<App>
+
+<style>
+    .checked {
+        border: 1px solid #007bff;
+    }
+</style>
+
+<main class="container px-2 py-3 mb-4">
+    <div class="card shadow p-3 bg-white rounded mx-auto">
+        <div class="card-body">
+            <h1 class="display-4 lead text-center">
+                Selecciona Apps
+            </h1>
+
+            @if (Model.Count == 0)
+            {
+                <p class="lead text-center">
+                    No existen datos disponibles.
+                </p>
+            }
+            else
+            {
+                <form method="post" asp-action="SaveIdApps" asp-controller="Apps">
+                    <div class="row row-cols-2 row-cols-md-4 gx-0">
+                        @foreach (App app in Model)
+                        {
+                            <div class="col mb-4">
+                                <div class="card card-app">
+                                    <img src="~/images/apps/@app.Icon" class="card-img-top" alt="..." >
+                                    <div class="card-body">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="ids" value="@app.Id" id="@app.Id">
+                                            <label class="form-check-label" for="@app.Id">
+                                                @app.Name
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+
+                    <div class="d-flex justify-content-center align-items-center">
+                        <button type="submit" class="btn btn-secondary me-1">Confirmar</button>
+
+                        <a asp-action="Options"
+                           asp-controller="Home"
+                           class="btn btn-danger">
+                            Cancelar
+                        </a>
+                    </div>
+                </form>
+            }
+        </div>
+    </div>
+</main>

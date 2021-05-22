@@ -1,0 +1,85 @@
+﻿@{
+    ViewData["Title"] = " - Resumen Apps";
+}
+
+
+<main class="container px-2 py-3 mb-4">
+
+    <div class="card ">
+        <div class="card-body ">
+            <h2 class="display-4 text-center mb-4">
+                Script generado
+            </h2>
+
+            <div class="accordion" id="accordionExample">
+                <div class="accordion accordion-flush border" id="accordionFlushExample">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="flush-headingOne">
+                            <button class="accordion-button collapsed text-center" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="true" aria-controls="flush-collapseOne">
+                                Ver código
+                            </button>
+                        </h2>
+                        <div id="flush-collapseOne" class="accordion-collapse collapse show" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">
+                                <textarea rows="6" id="script" class="form-control" readonly>@ViewData["script"]</textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="flush-headingTwo">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                                Guardar Script
+                            </button>
+                        </h2>
+                        <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">
+                                <p class="text-muted">
+                                    Debes registrarte si quieres guardar el script.
+                                </p>
+                                <form method="post" asp-controller="Apps" asp-action="PostScript">
+                                    <div class="form-group">
+                                        <label>Nombre del Script</label>
+                                        <input type="text" name="name" class="form-control mb-2" />
+                                    </div>
+
+                                    <input type="hidden" name="script" value="@ViewData["script"]" />
+
+                                    <button type="submit" class="btn btn-secondary mb-2">Guardar</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="d-flex justify-content-center align-items-center mt-3">
+                <button class="btn btn btn-outline-secondary me-1" id="btn-copy">Copiar</button>
+
+                <a asp-controller="Shut" asp-action="Download"
+                   asp-route-script="@ViewData["script"]"
+                   class="btn btn-secondary">
+                    Descargar
+                </a>
+            </div>
+        </div>
+    </div>
+</main>
+
+@section scripts {
+    <script type="text/javascript">
+        $(document).ready(() => {
+
+            $("#btn-copy").click(() => copyToClipboard("script"));
+
+            const copyToClipboard = (idElementTxt) => {
+                let txt = $("#" + idElementTxt).html();
+                navigator.clipboard.writeText(txt);
+            }
+        });
+    </script>
+}
+
+
+

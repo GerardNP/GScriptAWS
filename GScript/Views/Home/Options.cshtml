@@ -1,0 +1,27 @@
+﻿@{
+    ViewData["Title"] = "- Opciones";
+}
+
+<main class="container text-center px-2 py-3 mb-4">
+    <div class="card shadow p-3 bg-body rounded">
+        <div class="card-body">
+            <h2 class="lead mb-3">
+                Selecciona una operación
+            </h2>
+
+            <div class="list-group text-center">
+                <a asp-action="Index" asp-controller="Apps"
+                   class="list-group-item list-group-item-action
+               list-group-item-success">
+                    Abrir Apps
+                </a>
+
+                <a asp-action="Index" asp-controller="Shut"
+                   class="list-group-item list-group-item-action
+               list-group-item-danger">
+                    Apagar Equipo
+                </a>
+            </div>
+        </div>
+    </div>
+</main>

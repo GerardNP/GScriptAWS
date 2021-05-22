@@ -1,0 +1,99 @@
+﻿@{
+    ViewData["Title"] = "- Configuración apagado";
+}
+
+<main class="container px-2 py-3 mb-4">
+    <div class="card shadow p-3 bg-white rounded mx-auto">
+        <div class="card-body">
+            <h2 class="display-4 text-center mb-4">
+                Configuración del "apagado"
+            </h2>
+
+            <form method="post" asp-controller="Shut"
+                  asp-action="ResultOptions">
+                <label>
+                    Selecciona una operación
+                </label>
+
+                <div class="row border border-light border-4 rounded px-4 py-2 mb-3">
+                    <div class="form-check mb-2 col-12 col-lg-6">
+                        <input class="form-check-input" type="radio" name="operation" id="shut" value="shut">
+                        <label class="form-check-label" for="shut">
+                            Apagar
+                        </label>
+                    </div>
+
+                    <div class="form-check mb-2 col-12 col-lg-6">
+                        <input class="form-check-input" type="radio" name="operation" id="reboot" value="reboot">
+                        <label class="form-check-label" for="reboot">
+                            Reiniciar
+                        </label>
+                    </div>
+
+                    <div class="form-check mb-2 col-12 col-lg-6">
+                        <input class="form-check-input" type="radio" name="operation" id="hibern" value="hibern">
+                        <label class="form-check-label" for="hibern">
+                            Hibernar
+                        </label>
+                    </div>
+
+                    <div class="form-check  mb-2 col-12 col-lg-6">
+                        <input class="form-check-input" type="radio" name="operation" id="session" value="session">
+                        <label class="form-check-label" for="session">
+                            Cerrar sesión
+                        </label>
+                    </div>
+
+                    <div class="form-check  mb-2 col-12 col-lg-6">
+                        <input class="form-check-input" type="radio" name="operation" id="abort" value="abort">
+                        <label class="form-check-label" for="abort">
+                            Cancelar Operación
+                        </label>
+                    </div>
+                </div>
+
+                <div id="extras" class="d-none">
+                    <div class="form-group">
+                        <label for="mensaje">Mensaje</label>
+                        <textarea name="msg" id="msg"
+                                  class="form-control" rows="2"
+                                  placeholder="Se mostrará antes de la operación seleccionada."></textarea>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label for="time">Tiempo</label>
+                        <input type="number" name="time" id="time"
+                               class="form-control" placeholder="Expresado en segundos." />
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-secondary">
+                    Confirmar
+                </button>
+
+                <a asp-action="Options"
+                   asp-controller="Home" class="btn btn-danger">
+                    Cancelar
+                </a>
+            </form>
+        </div>
+    </div>
+</main>
+
+@section scripts {
+    <script type="text/javascript">
+        $(document).ready(() => {
+
+            $("input[name='operation']").change(() => {
+                if ($("input[value='abort']").is(":checked")) {
+                    console.log("ocultar")
+                    $("#extras").attr("class", "d-none")
+                } else {
+                    console.log("mostrar")
+
+                    $("#extras").attr("class", "d-block")
+                }
+            });
+        });
+    </script>
+}

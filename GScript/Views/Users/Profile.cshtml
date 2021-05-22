@@ -1,0 +1,87 @@
+﻿@{
+    ViewData["Title"] = "- Perfil";
+}
+@model List<Script>
+
+<main class="container text-center px-2 py-3 mb-4">
+    <div class="row shadow p-3 bg-body rounded mb-3">
+        <div class="col-6 p-0">
+            <img src="~/images/content/default-profile.png" class="profile-img rounded-pill d-block ms-auto" />
+        </div>
+        <div class="col-6 p-0 d-flex flex-column justify-content-center align-items-start ps-2">
+            <h5 class="">@User.Identity.Name</h5>
+            <p class="">@ViewData["email"]</p>
+        </div>
+    </div>
+
+    <h2 class="lead fs-2 decoration-underline">Scripts</h2>
+
+    @if (Model != null)
+    {
+        foreach (Script s in Model)
+        {
+            <div class="row">
+                <div class="col-12">
+                    <h6>@s.Name</h6>
+                </div>
+                <div class="col-8">
+                    <textarea class="form-control" rows="5" readonly id="@s.Id">@s.Code</textarea>
+                </div>
+
+                <div class="col-4 d-inline-flex justify-content-evenly align-items-center">
+                    <div class="row">
+                        <div class="col-12 col-lg-6 p-0 pe-lg-1 mb-1 mb-lg-0">
+                            <div class="d-grid">
+                                <a class="btn btn-secondary"
+                                   asp-controller="Apps" asp-action="Download"
+                                   asp-route-script="@s.Code">Descargar</a>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6 p-0 ps-lg-1 mb-1 mb-lg-1">
+                            <div class="d-grid">
+                                <button class="btn btn btn-outline-secondary btn-copy" data-id="@s.Id">Copiar</button>
+                            </div>
+                        </div>
+                        <div class="col-12 p-0">
+                            <div class="d-grid">
+                                <a class="btn btn-danger"
+                                   asp-controller="Users" asp-action="DeleteScript"
+                                   asp-route-id="@s.Id">Eliminar</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        }
+            @section scripts {
+                <script type="text/javascript">
+                    $(document).ready(() => {
+
+                        $(".btn-copy").click(() => copyToClipboard(event));
+
+                        const copyToClipboard = (event) => {
+                            let id = event.target.dataset.id;
+
+                            let txt = $("#" + id).html();
+                            navigator.clipboard.writeText(txt);
+                        }
+                    });
+                </script>
+            }
+    }
+    else
+    {
+        <div class="row">
+            <div class="col-12">
+                <p class="text-center lead">
+                    Aún no has guardado ningún script.<br />
+                    Al generar tu script, puedes guardarlo en tu cuenta.<br />
+                    <a asp-controller="Apps" asp-action="Index">Ver Apps</a>
+                </p>
+            </div>
+        </div>
+    }
+</main>
+
+

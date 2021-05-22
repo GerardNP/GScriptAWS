@@ -1,0 +1,14 @@
+﻿@{
+    ViewData["Title"] = "- Acceso no permitido";
+}
+
+<main class="container text-center px-2 py-3 mb-4">
+    <div class="alert alert-danger text-center">
+        <h1 class="display-4 mb-4">Acceso denegado</h1>
+        <p>No tiene autorización para acceder a esta página.</p>
+        <a asp-controller="Home"
+           asp-action="Index" class="nav-link">
+            Volver a Inicio
+        </a>
+    </div>
+</main>

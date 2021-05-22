@@ -1,0 +1,49 @@
+﻿@{
+    ViewData["Title"] = "- Añadir App";
+}
+
+<main class="container px-2 py-3 mb-4">
+    <div class="card shadow p-3 bg-white rounded mx-auto">
+        <div class="card-body">
+            <h1 class="display-4 lead text-center mb-2">
+                Añadir App
+            </h1>
+            
+            <form method="post" enctype="multipart/form-data">
+                <div class="form-group mb-3">
+                    <label for="name">Nombre de la App</label>
+                    <input type="text" name="name" id="name"
+                            class="form-control" required autofocus />
+                </div>
+
+                <div class="form-group mb-3">
+                    <label for="exename">Nombre del fichero .EXE</label>
+                    <input type="text" name="exename" id="exename"
+                            class="form-control" />
+                </div>
+
+                <div class="form-group mb-3">
+                    <label for="path">Directorio del .EXE</label>
+                    <input type="text" name="path" id="path"
+                            class="form-control" />
+                </div>
+
+                <div class="form-group mb-3">
+                    <label for="file">Icono</label>
+                    <input type="file" name="file" id="file"
+                            class="form-control" />
+                </div>
+
+                <button type="submit" class="btn btn-secondary">
+                    Añadir
+                </button>
+
+                <a asp-action="Index"
+                    asp-controller="Admin"
+                    class="btn btn-danger">
+                    Cancelar
+                </a>
+            </form>
+        </div>
+    </div>
+</main>
